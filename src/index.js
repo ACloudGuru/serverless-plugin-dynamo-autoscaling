@@ -28,18 +28,6 @@ class DynamoDBAutoscalingPlugin {
     };
   }
 
-  getStage() {
-    return this.serverless.getProvider('aws').getStage();
-  }
-
-  getServiceName() {
-    return this.serverless.service.getServiceName()
-  }
-
-  getRegion() {
-    return this.serverless.getProvider('aws').getRegion()
-  }
-
   validate() {
     assert(this.serverless, message.INVALID_CONFIGURATION)
     assert(this.serverless.service, message.INVALID_CONFIGURATION)
@@ -71,18 +59,16 @@ class DynamoDBAutoscalingPlugin {
 
     const options = {
       index,
-      region: this.getRegion(),
-      service: this.getServiceName(),
-      stage: this.getStage(),
+      region: this.serverless.getProvider('aws').getRegion(),
+      service: this.serverless.service.getServiceName(),
+      stage: this.serverless.getProvider('aws').getStage(),
       table
     }
 
-    // Start processing configuration
     this.serverless.cli.log(
       util.format(message.CLI_RESOURCE, table, (index ? ('/index/' + index) : ''))
     )
 
-    // Add role to manage Auto Scaling policies
     const resources = [
       new Role(options)
     ]
@@ -95,14 +81,14 @@ class DynamoDBAutoscalingPlugin {
       resources.push(...this.getPolicyAndTarget(options, data.write, false))
     }
 
-    return resources
+    return resources;
   }
 
   getPolicyAndTarget(options, data, read) {
     return [
-      new Policy(options, read, data.usage * 100, 60, 60),
+      new Policy(options, read, data.usage, 60, 60),
       new Target(options, read, data.minimum, data.maximum)
-    ]
+    ];
   }
 
   generate(table, config) {
