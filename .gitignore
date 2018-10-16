@@ -1,0 +1,9 @@
+node_modules
+coverage
+*.log
+.DS_Store
+.env-dev
+.env-deploy
+.env
+.serverless
+sumologic-shipping-function

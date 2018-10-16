@@ -1,0 +1,18 @@
+{
+    "plugins": [
+        "node",
+        "promise"
+    ],
+    "extends": [
+        "eslint:recommended",
+        "plugin:node/recommended"
+    ],
+    "env": {
+        "node": true,
+        "mocha": true,
+        "jest": true
+    },
+    "rules": {
+
+    }
+}

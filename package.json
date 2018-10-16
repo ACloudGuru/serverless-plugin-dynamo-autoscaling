@@ -1,0 +1,20 @@
+{
+  "name": "serverless-dynamodb-autoscaling",
+  "version": "1.0.0",
+  "description": "Serverless Plugin to deploy DynamoDB Autoscaling",
+  "main": "src/index.js",
+  "repository": "git@github.com:ACloudGuru/serverless-dynamodb-autoscaling.git",
+  "author": "subash adhikari <subash.adhikari@acloud.guru>",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "eslint": "^5.7.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0"
+  },
+  "dependencies": {
+    "lodash.merge": "^4.6.1"
+  }
+}
