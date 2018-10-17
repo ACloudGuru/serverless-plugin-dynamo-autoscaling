@@ -1,4 +1,5 @@
 const output = require('./__mocks__/cloudformation');
+const outputNoRole = require('./__mocks__/cloudformation-no-role');
 const Plugin = require('./index');
 
 const PluginFactory = (capacities, stage) => {
@@ -53,9 +54,9 @@ describe('#AutoScalingPlugin', () => {
       console.log(resources);
     });
 
-    it('should not create new roles if arn is already provided', () => {
+    fit('should not create new roles if arn is already provided', () => {
       const config = [{
-        roleArn: 'fooarn',
+        roleArn: 'foorolearn',
         table: 'footable',
         index: ['fooindex'],
         write: {
@@ -77,10 +78,10 @@ describe('#AutoScalingPlugin', () => {
 
       plugin.process();
 
-      expect(resources).toEqual(output);
+      expect(resources).toEqual(outputNoRole);
     });
 
-    fit('should generate cloudformation json', () => {
+    it('should generate cloudformation json', () => {
       const config = [{
         table: 'footable',
         index: ['fooindex'],
