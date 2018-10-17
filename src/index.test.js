@@ -2,7 +2,7 @@ const output = require('./__mocks__/cloudformation')
 const outputNoRole = require('./__mocks__/cloudformation-no-role')
 const Plugin = require('./index')
 
-const PluginFactory = (capacities, stage) => {
+const PluginFactory = (autoscaling, stage) => {
   stage = stage || 'dev'
 
   const serverless = {
@@ -10,7 +10,7 @@ const PluginFactory = (capacities, stage) => {
       log: console.log
     },
     service: {
-      custom: { capacities },
+      custom: { autoscaling },
       getServiceName: () => this.service,
       provider: {
         name: 'aws',

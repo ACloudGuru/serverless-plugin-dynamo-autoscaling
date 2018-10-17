@@ -117,7 +117,7 @@ class DynamoDBAutoscalingPlugin {
   }
 
   process() {
-    const configs = this.serverless.service.custom.capacities
+    const configs = this.serverless.service.custom.autoscaling
       .filter(config => !!config.read || !!config.write)
 
     configs.forEach(config => {
