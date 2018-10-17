@@ -1,8 +1,6 @@
-# serverless-dynamodb-autoscaling
+# ⚡️ Serverless Plugin for DynamoDB Auto Scaling
 
-# ⚡️ Serverless Plugin for DynamoDB Auto Scaling with Cloudformation
-
-With this plugin for [serverless](https://serverless.com), you can enable DynamoDB Auto Scaling for tables and **Global Secondary Indexes** easily in your `serverless.yml` configuration file. The plugin supports multiple tables and indexes, as well as separate configuration for `read` and `write` capacities using Amazon's [native DynamoDB Auto Scaling](https://aws.amazon.com/blogs/aws/new-auto-scaling-for-amazon-dynamodb/).
+Serverless Plugin to enable autoscaling for dynamodb tables and its GSI.
 
 ## Installation
 

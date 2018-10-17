@@ -32,12 +32,12 @@ class DynamoDBAutoscalingPlugin {
       read: {
         maximum: config.read && config.read.maximum ? config.read.maximum : 200,
         minimum: config.read && config.read.minimum ? config.read.minimum : 5,
-        usage: config.read && config.read.usage ? config.read.usage : 75
+        targetUsage: config.read && config.read.targetUsage ? config.read.targetUsage : 75
       },
       write: {
         maximum: config.write && config.write.maximum ? config.write.maximum : 200,
         minimum: config.write && config.write.minimum ? config.write.minimum : 5,
-        usage: config.write && config.write.usage ? config.write.usage : 75
+        targetUsage: config.write && config.write.targetUsage ? config.write.targetUsage : 75
       }
     }
   }
@@ -78,7 +78,7 @@ class DynamoDBAutoscalingPlugin {
 
   getPolicyAndTarget(options, data, scaling) {
     return [
-      new Policy(options, scaling, data.usage, 60, 60),
+      new Policy(options, scaling, data.targetUsage, 60, 60),
       new Target(options, scaling, data.minimum, data.maximum)
     ]
   }

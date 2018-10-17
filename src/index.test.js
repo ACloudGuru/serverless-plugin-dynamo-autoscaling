@@ -41,12 +41,12 @@ describe('#AutoScalingPlugin', () => {
       read: {
         maximum: 200,
         minimum: 5,
-        usage: 75
+        targetUsage: 75
       },
       write: {
         maximum: 200,
         minimum: 5,
-        usage: 75
+        targetUsage: 75
       }
     })
   })
@@ -59,12 +59,12 @@ describe('#AutoScalingPlugin', () => {
       write: {
         minimum: 1,
         maximum: 10,
-        usage: 70
+        targetUsage: 70
       },
       read: {
         minimum: 1,
         maximum: 10,
-        usage: 70
+        targetUsage: 70
       }
     }]
 
@@ -85,12 +85,12 @@ describe('#AutoScalingPlugin', () => {
       write: {
         minimum: 1,
         maximum: 10,
-        usage: 70
+        targetUsage: 70
       },
       read: {
         minimum: 1,
         maximum: 10,
-        usage: 70
+        targetUsage: 70
       }
     }]
 
