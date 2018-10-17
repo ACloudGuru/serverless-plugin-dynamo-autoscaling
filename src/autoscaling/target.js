@@ -20,25 +20,42 @@ class Target {
     }
 
     const nameTarget = this.name.target(this.scaling)
-    const nameRole = this.name.role()
     const nameDimension = this.name.dimension(this.scaling)
-
-    const DependsOn = [ this.options.table, nameRole ].concat(this.dependencies)
 
     return {
       [nameTarget]: {
-        DependsOn,
+        DependsOn: this.dependsOn(),
         Properties: {
           MaxCapacity: this.max,
           MinCapacity: this.min,
           ResourceId: { 'Fn::Join': [ '', resource ] },
-          RoleARN: { 'Fn::GetAtt': [ nameRole, 'Arn' ] },
+          RoleARN: this.roleArn(),
           ScalableDimension: nameDimension,
           ServiceNamespace: 'dynamodb'
         },
         Type: this.type
       }
     };
+  }
+
+  dependsOn() {
+    const dependencies = [ this.options.table ]
+
+    if (!this.options.roleArn) {
+      dependencies.push(this.name.role())
+    }
+
+    return dependencies.concat(this.dependencies)
+  }
+
+  roleArn() {
+    const roleArn = this.options.roleArn
+
+    if (roleArn) {
+      return `'${roleArn}'`
+    }
+
+    return { 'Fn::GetAtt': [ this.name.role(), 'Arn' ] }
   }
 }
 

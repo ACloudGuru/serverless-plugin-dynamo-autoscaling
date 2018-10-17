@@ -53,6 +53,33 @@ describe('#AutoScalingPlugin', () => {
       console.log(resources);
     });
 
+    it('should not create new roles if arn is already provided', () => {
+      const config = [{
+        roleArn: 'fooarn',
+        table: 'footable',
+        index: ['fooindex'],
+        write: {
+          minimum: 1,
+          maximum: 10,
+          usage: 70
+        },
+        read: {
+          minimum: 1,
+          maximum: 10,
+          usage: 70
+        }
+      }];
+
+      const plugin = PluginFactory(config);
+      const resources = plugin.serverless.service.provider.compiledCloudFormationTemplate.Resources;
+
+      expect(resources).toEqual({});
+
+      plugin.process();
+
+      expect(resources).toEqual(output);
+    });
+
     fit('should generate cloudformation json', () => {
       const config = [{
         table: 'footable',

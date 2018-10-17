@@ -69,9 +69,13 @@ class DynamoDBAutoscalingPlugin {
       util.format(message.CLI_RESOURCE, table, (index ? ('/index/' + index) : ''))
     )
 
-    const resources = [
-      new Role(options)
-    ]
+    const resources = [];
+
+    if (!config.roleArn) {
+      resources.push(new Role(options))
+    } else {
+      options.roleArn = config.roleArn
+    }
 
     if (config.read) {
       resources.push(...this.getPolicyAndTarget(options, data.read, 'Read'))
