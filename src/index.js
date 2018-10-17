@@ -28,28 +28,17 @@ class DynamoDBAutoscalingPlugin {
     };
   }
 
-  validate() {
-    assert(this.serverless, message.INVALID_CONFIGURATION)
-    assert(this.serverless.service, message.INVALID_CONFIGURATION)
-    assert(this.serverless.service.provider, message.INVALID_CONFIGURATION)
-    assert(this.serverless.service.provider.name, message.INVALID_CONFIGURATION)
-    assert(this.serverless.service.provider.name === 'aws', message.ONLY_AWS_SUPPORT)
-
-    assert(this.serverless.service.custom, message.NO_AUTOSCALING_CONFIG)
-    assert(this.serverless.service.custom.capacities, message.NO_AUTOSCALING_CONFIG)
-  }
-
   defaults(config) {
     return {
       read: {
         maximum: config.read && config.read.maximum ? config.read.maximum : 200,
         minimum: config.read && config.read.minimum ? config.read.minimum : 5,
-        usage: config.read && config.read.usage ? config.read.usage : 0.75
+        usage: config.read && config.read.usage ? config.read.usage : 75
       },
       write: {
         maximum: config.write && config.write.maximum ? config.write.maximum : 200,
         minimum: config.write && config.write.minimum ? config.write.minimum : 5,
-        usage: config.write && config.write.usage ? config.write.usage : 0.75
+        usage: config.write && config.write.usage ? config.write.usage : 75
       }
     }
   }
@@ -148,7 +137,6 @@ class DynamoDBAutoscalingPlugin {
 
   beforeDeployResources() {
     return Promise.resolve()
-      .then(() => this.validate())
       .then(() => this.serverless.cli.log(util.format(message.CLI_START)))
       .then(() => this.process())
       .then(() => this.serverless.cli.log(util.format(message.CLI_DONE)))

@@ -13,6 +13,7 @@ const PluginFactory = (capacities, stage) => {
       custom: { capacities },
       getServiceName: () => this.service,
       provider: {
+        name: 'aws',
         compiledCloudFormationTemplate: {
           Resources: {}
         }
@@ -32,78 +33,73 @@ const PluginFactory = (capacities, stage) => {
 
 describe('#AutoScalingPlugin', () => {
 
-  describe('#resources', () => {
+  it('should set defaults', () => {
+    const config = {};
+    const plugin = PluginFactory(config);
 
-    it('should create resources', () => {
-      const config = {
-        write: {
-          minimum: 1,
-          maximum: 10,
-          usage: 70
-        },
-        read: {
-          minimum: 1,
-          maximum: 10,
-          usage: 70
-        }
-      };
-
-      const plugin = PluginFactory();
-      const resources = plugin.resources('table', 'index', config);
-
-      console.log(resources);
+    expect(plugin.defaults(config)).toEqual({
+      read: {
+        maximum: 200,
+        minimum: 5,
+        usage: 75
+      },
+      write: {
+        maximum: 200,
+        minimum: 5,
+        usage: 75
+      }
     });
+  });
 
-    fit('should not create new roles if arn is already provided', () => {
-      const config = [{
-        roleArn: 'foorolearn',
-        table: 'footable',
-        index: ['fooindex'],
-        write: {
-          minimum: 1,
-          maximum: 10,
-          usage: 70
-        },
-        read: {
-          minimum: 1,
-          maximum: 10,
-          usage: 70
-        }
-      }];
+  it('should not create new roles if arn is already provided', () => {
+    const config = [{
+      roleArn: 'foorolearn',
+      table: 'footable',
+      index: ['fooindex'],
+      write: {
+        minimum: 1,
+        maximum: 10,
+        usage: 70
+      },
+      read: {
+        minimum: 1,
+        maximum: 10,
+        usage: 70
+      }
+    }];
 
-      const plugin = PluginFactory(config);
-      const resources = plugin.serverless.service.provider.compiledCloudFormationTemplate.Resources;
+    const plugin = PluginFactory(config);
+    const resources = plugin.serverless.service.provider.compiledCloudFormationTemplate.Resources;
 
-      expect(resources).toEqual({});
+    expect(resources).toEqual({});
 
-      plugin.process();
-
+    return plugin.beforeDeployResources().then(() => {
       expect(resources).toEqual(outputNoRole);
     });
+  });
 
-    it('should generate cloudformation json', () => {
-      const config = [{
-        table: 'footable',
-        index: ['fooindex'],
-        write: {
-          minimum: 1,
-          maximum: 10,
-          usage: 70
-        },
-        read: {
-          minimum: 1,
-          maximum: 10,
-          usage: 70
-        }
-      }];
+  it('should generate cloudformation json', () => {
+    const config = [{
+      table: 'footable',
+      index: ['fooindex'],
+      write: {
+        minimum: 1,
+        maximum: 10,
+        usage: 70
+      },
+      read: {
+        minimum: 1,
+        maximum: 10,
+        usage: 70
+      }
+    }];
 
-      const plugin = PluginFactory(config);
-      const resources = plugin.serverless.service.provider.compiledCloudFormationTemplate.Resources;
+    const plugin = PluginFactory(config);
+    const resources = plugin.serverless.service.provider.compiledCloudFormationTemplate.Resources;
 
-      expect(resources).toEqual({});
+    expect(resources).toEqual({});
 
-      plugin.process();
-
+    return plugin.beforeDeployResources().then(() => {
       expect(resources).toEqual(output);
     });
   });

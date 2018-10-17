@@ -15,30 +15,6 @@ class Name {
     this.options = options;
   }
 
-  metricRead() {
-    return this.metric(true);
-  }
-
-  metricWrite() {
-    return this.metric(false);
-  }
-
-  targetRead() {
-    return this.target(true);
-  }
-
-  targetWrite() {
-    return this.target(false);
-  }
-
-  policyScaleRead() {
-    return this.policyScale(true);
-  }
-
-  policyScaleWrite() {
-    return this.policyScale(false);
-  }
-
   policyRole() {
     return clean(this.build(TEXT.POLICYROLE));
   }
