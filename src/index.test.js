@@ -53,7 +53,7 @@ describe('#AutoScalingPlugin', () => {
       console.log(resources);
     });
 
-    it('should generate cloudformation json', () => {
+    fit('should generate cloudformation json', () => {
       const config = [{
         table: 'footable',
         index: ['fooindex'],

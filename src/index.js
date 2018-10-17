@@ -74,20 +74,20 @@ class DynamoDBAutoscalingPlugin {
     ]
 
     if (config.read) {
-      resources.push(...this.getPolicyAndTarget(options, data.read, true))
+      resources.push(...this.getPolicyAndTarget(options, data.read, 'Read'))
     }
 
     if (config.write) {
-      resources.push(...this.getPolicyAndTarget(options, data.write, false))
+      resources.push(...this.getPolicyAndTarget(options, data.write, 'Write'))
     }
 
     return resources;
   }
 
-  getPolicyAndTarget(options, data, read) {
+  getPolicyAndTarget(options, data, scaling) {
     return [
-      new Policy(options, read, data.usage, 60, 60),
-      new Target(options, read, data.minimum, data.maximum)
+      new Policy(options, scaling, data.usage, 60, 60),
+      new Target(options, scaling, data.minimum, data.maximum)
     ];
   }
 

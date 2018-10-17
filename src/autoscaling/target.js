@@ -2,9 +2,9 @@ const Name = require('../name');
 
 class Target {
 
-  constructor (options, read, min, max) {
+  constructor (options, scaling, min, max) {
     this.options = options;
-    this.read = read;
+    this.scaling = scaling;
     this.min = min;
     this.max = max;
     this.type = 'AWS::ApplicationAutoScaling::ScalableTarget';
@@ -19,9 +19,9 @@ class Target {
       resource.push('/index/', this.options.index)
     }
 
-    const nameTarget = this.name.target(this.read)
+    const nameTarget = this.name.target(this.scaling)
     const nameRole = this.name.role()
-    const nameDimension = this.name.dimension(this.read)
+    const nameDimension = this.name.dimension(this.scaling)
 
     const DependsOn = [ this.options.table, nameRole ].concat(this.dependencies)
 

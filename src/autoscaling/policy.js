@@ -2,9 +2,9 @@ const Name = require('../name');
 
 class Policy {
 
-  constructor (options, read, value, scaleIn, scaleOut) {
+  constructor (options, scaling, value, scaleIn, scaleOut) {
     this.options = options;
-    this.read = read;
+    this.scaling = scaling;
     this.value = value;
     this.scaleIn = scaleIn;
     this.scaleOut = scaleOut;
@@ -14,9 +14,9 @@ class Policy {
   }
 
   toJSON() {
-    const PredefinedMetricType = this.name.metric(this.read)
-    const PolicyName = this.name.policyScale(this.read)
-    const Target = this.name.target(this.read)
+    const PredefinedMetricType = this.name.metric(this.scaling)
+    const PolicyName = this.name.policyScale(this.scaling)
+    const Target = this.name.target(this.scaling)
 
     const DependsOn = [ this.options.table, Target ].concat(this.dependencies)
 
