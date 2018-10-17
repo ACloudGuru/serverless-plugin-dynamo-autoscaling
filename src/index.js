@@ -98,7 +98,7 @@ class DynamoDBAutoscalingPlugin {
     const indexes = this.normalize(config.index);
 
     if (!config.indexOnly) {
-      indexes.unshift('') // Horrible solution
+      indexes.unshift('');
     }
 
     indexes.forEach(
@@ -107,7 +107,7 @@ class DynamoDBAutoscalingPlugin {
           (resource) => {
             resource.dependencies = lastRessources;
 
-            return resource.toJSON()
+            return resource.toJSON();
           }
         )
 
