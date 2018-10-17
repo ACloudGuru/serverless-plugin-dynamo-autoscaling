@@ -1,3 +1,4 @@
+const Name = require('../name');
 
 class Target {
 
@@ -7,6 +8,8 @@ class Target {
     this.min = min;
     this.max = max;
     this.type = 'AWS::ApplicationAutoScaling::ScalableTarget';
+    this.dependencies = [];
+    this.name = new Name(options);
   }
 
   toJSON() {

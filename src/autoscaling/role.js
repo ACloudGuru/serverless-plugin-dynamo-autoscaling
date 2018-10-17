@@ -1,3 +1,5 @@
+const Name = require('../name');
+
 class Role {
 
   constructor (options) {
@@ -5,6 +7,8 @@ class Role {
 
     this.type = 'AWS::IAM::Role';
     this.version = '2012-10-17';
+    this.dependencies = [];
+    this.name = new Name(options);
 
     this.actions = {
       CloudWatch: [

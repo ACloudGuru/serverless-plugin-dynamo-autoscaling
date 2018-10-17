@@ -104,7 +104,11 @@ class DynamoDBAutoscalingPlugin {
     indexes.forEach(
       (index) => {
         const current = this.resources(table, index, config).map(
-          (resource) => resource.setDependencies(lastRessources).toJSON()
+          (resource) => {
+            resource.dependencies = lastRessources;
+
+            return resource.toJSON()
+          }
         )
 
         resources = resources.concat(current)
