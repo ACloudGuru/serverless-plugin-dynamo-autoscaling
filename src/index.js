@@ -1,7 +1,6 @@
 'use strict';
 
 const util = require('util');
-const assert = require('assert');
 const merge = require('lodash.merge');
 
 const Role = require('./autoscaling/role');

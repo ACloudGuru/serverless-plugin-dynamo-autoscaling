@@ -22,5 +22,15 @@
   "dependencies": {
     "lodash.merge": "^4.6.1",
     "md5": "^2.2.1"
+  },
+ " jest": {
+    "coverageThreshold": {
+      "global": {
+        "statements": 95,
+        "branches": 85,
+        "lines": 95,
+        "functions": 95
+      }
+    }
   }
 }
