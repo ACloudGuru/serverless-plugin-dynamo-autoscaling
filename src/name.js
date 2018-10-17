@@ -1,5 +1,5 @@
-const util = require('util');
-const { clean, ucfirst } = require('./utility');
+const util = require('util')
+const { clean, ucfirst } = require('./utility')
 
 const TEXT = {
   DIMENSION: 'dynamodb:%s:%sCapacityUnits',
@@ -12,33 +12,33 @@ const TEXT = {
 
 class Name {
   constructor(options) {
-    this.options = options;
+    this.options = options
   }
 
   policyRole() {
-    return clean(this.build(TEXT.POLICYROLE));
+    return clean(this.build(TEXT.POLICYROLE))
   }
 
   dimension(scaling) {
-    const type = this.options.index === '' ? 'table' : 'index';
+    const type = this.options.index === '' ? 'table' : 'index'
 
-    return util.format(TEXT.DIMENSION, type, scaling);
+    return util.format(TEXT.DIMENSION, type, scaling)
   }
 
   role() {
-    return clean(this.build(TEXT.ROLE));
+    return clean(this.build(TEXT.ROLE))
   }
 
   target(scaling) {
-    return clean(this.build(TEXT.TARGET, scaling));
+    return clean(this.build(TEXT.TARGET, scaling))
   }
 
   policyScale(scaling) {
-    return clean(this.build(TEXT.POLICYSCALE, scaling));
+    return clean(this.build(TEXT.POLICYSCALE, scaling))
   }
 
   metric(scaling) {
-    return clean(util.format(TEXT.METRIC, scaling));
+    return clean(util.format(TEXT.METRIC, scaling))
   }
 
   build(data, ...args) {
@@ -46,11 +46,11 @@ class Name {
       this.prefix(),
       args ? util.format(data, ...args) : data,
       this.suffix()
-    ].join('');
+    ].join('')
   }
 
   prefix() {
-    return this.options.service;
+    return this.options.service
   }
 
   suffix() {
@@ -65,4 +65,4 @@ class Name {
   }
 }
 
-module.exports = Name;
+module.exports = Name

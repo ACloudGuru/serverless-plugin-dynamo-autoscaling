@@ -1,9 +1,9 @@
-const output = require('./__mocks__/cloudformation');
-const outputNoRole = require('./__mocks__/cloudformation-no-role');
-const Plugin = require('./index');
+const output = require('./__mocks__/cloudformation')
+const outputNoRole = require('./__mocks__/cloudformation-no-role')
+const Plugin = require('./index')
 
 const PluginFactory = (capacities, stage) => {
-  stage = stage || 'dev';
+  stage = stage || 'dev'
 
   const serverless = {
     cli: {
@@ -24,18 +24,18 @@ const PluginFactory = (capacities, stage) => {
       return {
         getRegion: () => 'fooregion',
         getStage: () => stage,
-      };
+      }
     },
-  };
+  }
 
-  return new Plugin(serverless, stage);
-};
+  return new Plugin(serverless, stage)
+}
 
 describe('#AutoScalingPlugin', () => {
 
   it('should set defaults', () => {
-    const config = {};
-    const plugin = PluginFactory(config);
+    const config = {}
+    const plugin = PluginFactory(config)
 
     expect(plugin.defaults(config)).toEqual({
       read: {
@@ -48,8 +48,8 @@ describe('#AutoScalingPlugin', () => {
         minimum: 5,
         usage: 75
       }
-    });
-  });
+    })
+  })
 
   it('should not create new roles if arn is already provided', () => {
     const config = [{
@@ -66,17 +66,17 @@ describe('#AutoScalingPlugin', () => {
         maximum: 10,
         usage: 70
       }
-    }];
+    }]
 
-    const plugin = PluginFactory(config);
-    const resources = plugin.serverless.service.provider.compiledCloudFormationTemplate.Resources;
+    const plugin = PluginFactory(config)
+    const resources = plugin.serverless.service.provider.compiledCloudFormationTemplate.Resources
 
-    expect(resources).toEqual({});
+    expect(resources).toEqual({})
 
     return plugin.beforeDeployResources().then(() => {
-      expect(resources).toEqual(outputNoRole);
-    });
-  });
+      expect(resources).toEqual(outputNoRole)
+    })
+  })
 
   it('should generate cloudformation json', () => {
     const config = [{
@@ -92,15 +92,15 @@ describe('#AutoScalingPlugin', () => {
         maximum: 10,
         usage: 70
       }
-    }];
+    }]
 
-    const plugin = PluginFactory(config);
-    const resources = plugin.serverless.service.provider.compiledCloudFormationTemplate.Resources;
+    const plugin = PluginFactory(config)
+    const resources = plugin.serverless.service.provider.compiledCloudFormationTemplate.Resources
 
-    expect(resources).toEqual({});
+    expect(resources).toEqual({})
 
     return plugin.beforeDeployResources().then(() => {
-      expect(resources).toEqual(output);
-    });
-  });
-});
+      expect(resources).toEqual(output)
+    })
+  })
+})

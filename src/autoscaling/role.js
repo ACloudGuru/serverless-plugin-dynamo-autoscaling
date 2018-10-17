@@ -1,14 +1,14 @@
-const Name = require('../name');
+const Name = require('../name')
 
 class Role {
 
   constructor (options) {
-    this.options = options;
+    this.options = options
 
-    this.type = 'AWS::IAM::Role';
-    this.version = '2012-10-17';
-    this.dependencies = [];
-    this.name = new Name(options);
+    this.type = 'AWS::IAM::Role'
+    this.version = '2012-10-17'
+    this.dependencies = []
+    this.name = new Name(options)
 
     this.actions = {
       CloudWatch: [
@@ -22,7 +22,7 @@ class Role {
         'dynamodb:DescribeTable',
         'dynamodb:UpdateTable'
       ]
-    };
+    }
   }
 
   toJSON() {
@@ -60,18 +60,18 @@ class Role {
         },
         Type
       }
-    };
+    }
   }
 
   resource() {
     return {
       'Fn::Join': [ '', [ 'arn:aws:dynamodb:*:', { Ref: 'AWS::AccountId' }, ':table/', { Ref: this.options.table } ] ]
-    };
+    }
   }
 
   principal() {
-    return { Service: 'application-autoscaling.amazonaws.com' };
+    return { Service: 'application-autoscaling.amazonaws.com' }
   }
 }
 
-module.exports = Role;
+module.exports = Role

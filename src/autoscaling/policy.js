@@ -1,16 +1,16 @@
-const Name = require('../name');
+const Name = require('../name')
 
 class Policy {
 
   constructor (options, scaling, value, scaleIn, scaleOut) {
-    this.options = options;
-    this.scaling = scaling;
-    this.value = value;
-    this.scaleIn = scaleIn;
-    this.scaleOut = scaleOut;
-    this.type = 'AWS::ApplicationAutoScaling::ScalingPolicy';
-    this.dependencies = [];
-    this.name = new Name(options);
+    this.options = options
+    this.scaling = scaling
+    this.value = value
+    this.scaleIn = scaleIn
+    this.scaleOut = scaleOut
+    this.type = 'AWS::ApplicationAutoScaling::ScalingPolicy'
+    this.dependencies = []
+    this.name = new Name(options)
   }
 
   toJSON() {
@@ -42,4 +42,4 @@ class Policy {
   }
 }
 
-module.exports = Policy;
+module.exports = Policy

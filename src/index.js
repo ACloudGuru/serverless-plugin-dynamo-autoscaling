@@ -1,11 +1,11 @@
-'use strict';
+'use strict'
 
-const util = require('util');
-const merge = require('lodash.merge');
+const util = require('util')
+const merge = require('lodash.merge')
 
-const Role = require('./autoscaling/role');
-const Target = require('./autoscaling/target');
-const Policy = require('./autoscaling/policy');
+const Role = require('./autoscaling/role')
+const Target = require('./autoscaling/target')
+const Policy = require('./autoscaling/policy')
 
 const message = {
   CLI_DONE: 'Added DynamoDB Auto Scaling to CloudFormation!',
@@ -15,16 +15,16 @@ const message = {
   INVALID_CONFIGURATION: 'Invalid serverless configuration',
   NO_AUTOSCALING_CONFIG: 'Not Auto Scaling configuration found',
   ONLY_AWS_SUPPORT: 'Only supported for AWS provicer'
-};
+}
 
 class DynamoDBAutoscalingPlugin {
 
   constructor(serverless) {
-    this.serverless = serverless;
+    this.serverless = serverless
 
     this.hooks = {
       'package:compileEvents': this.beforeDeployResources.bind(this)
-    };
+    }
   }
 
   defaults(config) {
@@ -57,7 +57,7 @@ class DynamoDBAutoscalingPlugin {
       util.format(message.CLI_RESOURCE, table, (index ? ('/index/' + index) : ''))
     )
 
-    const resources = [];
+    const resources = []
 
     if (!config.roleArn) {
       resources.push(new Role(options))
@@ -73,65 +73,65 @@ class DynamoDBAutoscalingPlugin {
       resources.push(...this.getPolicyAndTarget(options, data.write, 'Write'))
     }
 
-    return resources;
+    return resources
   }
 
   getPolicyAndTarget(options, data, scaling) {
     return [
       new Policy(options, scaling, data.usage, 60, 60),
       new Target(options, scaling, data.minimum, data.maximum)
-    ];
+    ]
   }
 
   generate(table, config) {
     let resources = []
     let lastRessources = []
 
-    const indexes = this.normalize(config.index);
+    const indexes = this.normalize(config.index)
 
     if (!config.indexOnly) {
-      indexes.unshift('');
+      indexes.unshift('')
     }
 
-    indexes.forEach(
-      (index) => {
-        const current = this.resources(table, index, config).map(
-          (resource) => {
-            resource.dependencies = lastRessources;
+    indexes.forEach(index => {
+      const current = this.resources(table, index, config)
+        .map(resource => {
+          resource.dependencies = lastRessources
 
-            return resource.toJSON();
-          }
-        )
+          return resource.toJSON()
+        })
 
-        resources = resources.concat(current)
-        lastRessources = current.map((item) => Object.keys(item).pop())
-      }
-    )
+      resources = resources.concat(current)
+      lastRessources = current.map(item => Object.keys(item).pop())
+    })
 
     return resources
   }
 
   normalize(data) {
     if (data && data.constructor !== Array) {
-      return [ data ];
+      return [ data ]
     }
 
     return (data || []).slice(0)
   }
 
   process() {
-    this.serverless.service.custom.capacities.filter(
-      (config) => !!config.read || !!config.write
-    ).forEach(
-      (config) => this.normalize(config.table).forEach(
-        (table) => this.generate(table, config).forEach(
-          (resource) => merge(
-            this.serverless.service.provider.compiledCloudFormationTemplate.Resources,
-            resource
-          )
-        )
-      )
-    )
+    const configs = this.serverless.service.custom.capacities
+      .filter(config => !!config.read || !!config.write)
+
+    configs.forEach(config => {
+      const tables = this.normalize(config.table)
+
+      tables.forEach(table => {
+        const resources = this.generate(table, config)
+
+        resources.forEach(resource => merge(
+          this.serverless.service.provider.compiledCloudFormationTemplate.Resources,
+          resource
+        ))
+      })
+    })
   }
 
   beforeDeployResources() {
@@ -143,4 +143,4 @@ class DynamoDBAutoscalingPlugin {
   }
 }
 
-module.exports = DynamoDBAutoscalingPlugin;
+module.exports = DynamoDBAutoscalingPlugin

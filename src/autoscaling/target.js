@@ -1,15 +1,15 @@
-const Name = require('../name');
+const Name = require('../name')
 
 class Target {
 
   constructor (options, scaling, min, max) {
-    this.options = options;
-    this.scaling = scaling;
-    this.min = min;
-    this.max = max;
-    this.type = 'AWS::ApplicationAutoScaling::ScalableTarget';
-    this.dependencies = [];
-    this.name = new Name(options);
+    this.options = options
+    this.scaling = scaling
+    this.min = min
+    this.max = max
+    this.type = 'AWS::ApplicationAutoScaling::ScalableTarget'
+    this.dependencies = []
+    this.name = new Name(options)
   }
 
   toJSON() {
@@ -35,7 +35,7 @@ class Target {
         },
         Type: this.type
       }
-    };
+    }
   }
 
   dependsOn() {
@@ -59,4 +59,4 @@ class Target {
   }
 }
 
-module.exports = Target;
+module.exports = Target
