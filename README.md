@@ -34,6 +34,7 @@ custom:
     - table: CustomTable  # DynamoDB Resource
       index:              # List or single index name - Optional
         - custom-index-name
+      roleArn:            # Arn of the role to be associated - Optional
       read:
         minimum: 5        # Minimum read capacity
         maximum: 1000     # Maximum read capacity
@@ -51,6 +52,8 @@ maximum: 200
 minimum: 5
 targetUsage: 75
 ```
+
+If no `roleArn` is specified, plugin will automatically create one and use it.
 
 ### Index Only
 
