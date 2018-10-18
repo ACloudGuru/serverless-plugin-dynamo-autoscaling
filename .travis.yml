@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+  - '6.10'
+  - '8'
+
+install:
+  - yarn install
+
+script:
+  - yarn run lint
+  - yarn run test
+
+after_success:
+  - cat ./coverage/lcov.info | ./node_modules/.bin/coveralls && rm -rf ./coverage
+
