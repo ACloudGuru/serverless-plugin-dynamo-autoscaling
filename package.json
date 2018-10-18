@@ -1,12 +1,23 @@
 {
-  "name": "serverless-dynamodb-autoscaling",
+  "name": "serverless-plugin-dynamodb-autoscaling",
   "version": "1.0.0",
   "description": "Serverless Plugin to deploy DynamoDB Autoscaling",
   "main": "src/index.js",
-  "repository": "git@github.com:ACloudGuru/serverless-dynamodb-autoscaling.git",
+  "repository": "git@github.com:ACloudGuru/serverless-plugin-dynamodb-autoscaling.git",
   "author": "subash adhikari <subash.adhikari@acloud.guru>",
   "license": "MIT",
   "private": true,
+  "keywords": [
+    "serverless",
+    "dynamodb",
+    "autoscaling",
+    "cloudformation",
+    "aws",
+    "amazon-web-services",
+    "serverless-framework",
+    "serverless-plugin",
+    "sls"
+  ],
   "scripts": {
     "lint": "yarn eslint .",
     "test": "yarn jest --coverage"
