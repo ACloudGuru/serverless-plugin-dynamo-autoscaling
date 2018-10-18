@@ -1,8 +1,8 @@
 # ⚡️ Serverless Plugin for DynamoDB Auto Scaling
 [![Build Status][travis-image]][travis-url]
 [![Coverage Status][coverage-image]][coverage-url]
-[![dependencies Status][dependencies-image]][dependencies-url]
 [![GitHub license][license-image]][license-url]
+[![dependencies Status][dependencies-image]][dependencies-url]
 
 Serverless Plugin to enable autoscaling for dynamodb tables and its GSI.
 
@@ -11,17 +11,17 @@ Serverless Plugin to enable autoscaling for dynamodb tables and its GSI.
 
 ```bash
 # Via yarn
-$ yarn add serverless-plugin-dynamodb-autoscaling
+$ yarn add serverless-plugin-dynamo-autoscaling
 
 # Via npm
-$ npm install serverless-plugin-dynamodb-autoscaling
+$ npm install serverless-plugin-dynamo-autoscaling
 ```
 
 Add the plugin to your `serverless.yml`:
 
 ```yaml
 plugins:
-  - serverless-plugin-dynamodb-autoscaling
+  - serverless-plugin-dynamo-autoscaling
 ```
 
 ## Configuration
@@ -30,7 +30,7 @@ plugins:
 ```yaml
 custom:
   autoscaling:
-    - table: CustomTable  # DynamoDB Resource 
+    - table: CustomTable  # DynamoDB Resource
       index:              # List or single index name - Optional
         - custom-index-name
       read:
@@ -99,11 +99,11 @@ resources:
 Feel free to use the code, it's released using the [MIT license](LICENSE.md).
 
 
-[license-image]:https://img.shields.io/github/license/ACloudGuru/serverless-plugin-dynamodb-autoscaling.svg
-[license-url]:https://github.com/ACloudGuru/serverless-plugin-dynamodb-autoscaling/blob/master/LICENSE
-[travis-image]: https://travis-ci.org/ACloudGuru/serverless-plugin-dynamodb-autoscaling.svg?branch=master
-[travis-url]: https://travis-ci.org/ACloudGuru/serverless-plugin-dynamodb-autoscaling
-[dependencies-image]:https://david-dm.org/ACloudGuru/serverless-plugin-dynamodb-autoscaling/status.svg
-[dependencies-url]:https://david-dm.org/ACloudGuru/serverless-plugin-dynamodb-autoscaling
-[coverage-image]:https://coveralls.io/repos/github/ACloudGuru/serverless-plugin-dynamodb-autoscaling/badge.svg?branch=master
-[coverage-url]:https://coveralls.io/github/ACloudGuru/serverless-plugin-dynamodb-autoscaling?branch=master
+[license-image]:https://img.shields.io/github/license/ACloudGuru/serverless-plugin-dynamo-autoscaling.svg
+[license-url]:https://github.com/ACloudGuru/serverless-plugin-dynamo-autoscaling/blob/master/LICENSE
+[travis-image]: https://travis-ci.org/ACloudGuru/serverless-plugin-dynamo-autoscaling.svg?branch=master
+[travis-url]: https://travis-ci.org/ACloudGuru/serverless-plugin-dynamo-autoscaling
+[dependencies-image]:https://david-dm.org/ACloudGuru/serverless-plugin-dynamo-autoscaling/status.svg
+[dependencies-url]:https://david-dm.org/ACloudGuru/serverless-plugin-dynamo-autoscaling
+[coverage-image]:https://coveralls.io/repos/github/ACloudGuru/serverless-plugin-dynamo-autoscaling/badge.svg?branch=master
+[coverage-url]:https://coveralls.io/github/ACloudGuru/serverless-plugin-dynamo-autoscaling?branch=master
