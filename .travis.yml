@@ -12,4 +12,14 @@ script:
 
 after_success:
   - cat ./coverage/lcov.info | ./node_modules/.bin/coveralls && rm -rf ./coverage
-
+  
+deploy:
+  provider: npm
+  email: accounts@acloud.guru
+  api_key:
+    secure: JqcYlIg0jeevnDw8RmstnCjss/f9Vz+7yCU4WpVPmU8SARRYz+mKBou4mBJb+zj/63JownMMSrNg/FR8rNrdJnPkACM3O+OaAdxKKfpYAprsSffq8fbYzsRX6zehCos4rzBH0P23TxuCFKD81ZzYUy+ZlR4ISVWrPjzznBlfmGbgamhxgIx5Wv5QJQte2TqGwQq4qQ4R1m2tamKOV6vQqnbJTD1GyqIO8nbWtKro2ft3qdmejgah3+34KKD7U7bFn6UVT/2W7jlWihePjHkYhyLzezjuDn/sIhXqO6mfcMUYUVVGYQ+9YrSfvl1bPL3/0ZpKG5169qyK8VfDLdb1q8+sWAGb0PwQd2sTnQ2cLbMZ3aeQxLwARl4+/dSF3ImZTT2OBTMnM5CeUmgr86pm/Aqif0SJ2bNLSwSth8QX8MDs8YZX0EFSuxXUsVZ3SHaB1bbtwkTeaO4hlwKvSJ5+35aNNdztH9uvq1iFFL8clL5ZDuJvcZ40nWNIMWbnH8RI1cAxrHfjVd3OSs+49ZrJTmtZLYXz4sXOPa5gMQMkKdTId7IkPckmjKutSB6yxXw/j0CqBzoxeVmX36e/UWS9Q5uP3a8Wm9vIfPc2mGsgVibmaQLGYJv7YUKZAHhzT6eybDHqT0AiRgS9RLpCrn+0xwIfRW+YGL00YE7eFR7rzk0=
+  on:
+    tags: true
+    repo: ACloudGuru/serverless-plugin-dynamodb-autoscaling
+    branch: master
+    node: '6.10'
