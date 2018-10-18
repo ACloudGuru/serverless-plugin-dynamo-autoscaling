@@ -6,7 +6,6 @@
   "repository": "git@github.com:ACloudGuru/serverless-plugin-dynamodb-autoscaling.git",
   "author": "subash adhikari <subash.adhikari@acloud.guru>",
   "license": "MIT",
-  "private": true,
   "keywords": [
     "serverless",
     "dynamodb",
