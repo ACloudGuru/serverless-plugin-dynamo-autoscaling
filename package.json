@@ -1,5 +1,5 @@
 {
-  "name": "serverless-plugin-dynamodb-autoscaling",
+  "name": "serverless-plugin-dynamo-autoscaling",
   "version": "1.0.0",
   "description": "Serverless Plugin to deploy DynamoDB Autoscaling",
   "main": "src/index.js",
