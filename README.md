@@ -1,6 +1,7 @@
 # ⚡️ Serverless Plugin for DynamoDB Auto Scaling
 [![Build Status][travis-image]][travis-url]
 [![Coverage Status][coverage-image]][coverage-url]
+[![npm][npm-image]][npm-url]
 [![GitHub license][license-image]][license-url]
 [![dependencies Status][dependencies-image]][dependencies-url]
 
@@ -98,7 +99,8 @@ resources:
 
 Feel free to use the code, it's released using the [MIT license](LICENSE.md).
 
-
+[npm-image]:https://img.shields.io/npm/v/serverless-plugin-dynamo-autoscaling.svg
+[npm-url]:https://www.npmjs.com/package/serverless-plugin-dynamo-autoscaling
 [license-image]:https://img.shields.io/github/license/ACloudGuru/serverless-plugin-dynamo-autoscaling.svg
 [license-url]:https://github.com/ACloudGuru/serverless-plugin-dynamo-autoscaling/blob/master/LICENSE
 [travis-image]: https://travis-ci.org/ACloudGuru/serverless-plugin-dynamo-autoscaling.svg?branch=master
