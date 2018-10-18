@@ -2,6 +2,7 @@
 [![Build Status][travis-image]][travis-url]
 [![Coverage Status][coverage-image]][coverage-url]
 [![dependencies Status][dependencies-image]][dependencies-url]
+[![GitHub license][license-image]][license-url]
 
 Serverless Plugin to enable autoscaling for dynamodb tables and its GSI.
 
@@ -97,6 +98,9 @@ resources:
 
 Feel free to use the code, it's released using the [MIT license](LICENSE.md).
 
+
+[license-image]:https://img.shields.io/github/license/ACloudGuru/serverless-plugin-dynamodb-autoscaling.svg
+[license-url]:https://github.com/ACloudGuru/serverless-plugin-dynamodb-autoscaling/blob/master/LICENSE
 [travis-image]: https://travis-ci.org/ACloudGuru/serverless-plugin-dynamodb-autoscaling.svg?branch=master
 [travis-url]: https://travis-ci.org/ACloudGuru/serverless-plugin-dynamodb-autoscaling
 [dependencies-image]:https://david-dm.org/ACloudGuru/serverless-plugin-dynamodb-autoscaling/status.svg
