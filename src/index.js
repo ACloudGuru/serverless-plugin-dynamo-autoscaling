@@ -1,5 +1,6 @@
 'use strict'
 
+const assert = require('assert')
 const util = require('util')
 const merge = require('lodash.merge')
 
@@ -11,9 +12,9 @@ const message = {
   CLI_DONE: 'Added DynamoDB Auto Scaling to CloudFormation!',
   CLI_RESOURCE: ' - Building configuration for resource "table/%s%s"',
   CLI_SKIP: 'Skipping DynamoDB Auto Scaling: %s!',
-  CLI_START: 'Configure DynamoDB Auto Scaling …',
-  INVALID_CONFIGURATION: 'Invalid serverless configuration',
-  NO_AUTOSCALING_CONFIG: 'Not Auto Scaling configuration found',
+  CLI_START: 'Configuring DynamoDB Auto Scaling -',
+  INVALID_CONFIGURATION: 'Invalid serverless configuration!!',
+  NO_AUTOSCALING_CONFIG: 'Auto Scaling configuration not found!!',
   ONLY_AWS_SUPPORT: 'Only supported for AWS provicer'
 }
 
@@ -25,6 +26,17 @@ class DynamoDBAutoscalingPlugin {
     this.hooks = {
       'package:compileEvents': this.beforeDeployResources.bind(this)
     }
+  }
+
+  validate() {
+    assert(this.serverless, message.INVALID_CONFIGURATION)
+    assert(this.serverless.service, message.INVALID_CONFIGURATION)
+    assert(this.serverless.service.provider, message.INVALID_CONFIGURATION)
+    assert(this.serverless.service.provider.name, message.INVALID_CONFIGURATION)
+    assert(this.serverless.service.provider.name === 'aws', message.ONLY_AWS_SUPPORT)
+
+    assert(this.serverless.service.custom, message.NO_AUTOSCALING_CONFIG)
+    assert(this.serverless.service.custom.autoscaling, message.NO_AUTOSCALING_CONFIG)
   }
 
   defaults(config) {
@@ -136,6 +148,7 @@ class DynamoDBAutoscalingPlugin {
 
   beforeDeployResources() {
     return Promise.resolve()
+      .then(() => this.validate())
       .then(() => this.serverless.cli.log(util.format(message.CLI_START)))
       .then(() => this.process())
       .then(() => this.serverless.cli.log(util.format(message.CLI_DONE)))
