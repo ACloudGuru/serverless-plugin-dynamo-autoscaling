@@ -59,9 +59,7 @@ class Name {
       this.options.index,
       this.options.stage,
       this.options.region
-    ].map(
-      ucfirst
-    ).join('')
+    ].map(ucfirst).join('')
   }
 }
 
