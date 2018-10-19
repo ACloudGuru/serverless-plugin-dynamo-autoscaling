@@ -51,11 +51,7 @@ class Target {
   roleArn() {
     const roleArn = this.options.roleArn
 
-    if (roleArn) {
-      return `'${roleArn}'`
-    }
-
-    return { 'Fn::GetAtt': [ this.name.role(), 'Arn' ] }
+    return roleArn ? roleArn : { 'Fn::GetAtt': [ this.name.role(), 'Arn' ] }
   }
 }
 
