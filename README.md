@@ -32,9 +32,6 @@ plugins:
 custom:
   autoscaling:
     - table: CustomTable  # DynamoDB Resource
-      index:              # List or single index name - Optional
-        - custom-index-name
-      roleArn:            # Arn of the role to be associated - Optional
       read:
         minimum: 5        # Minimum read capacity
         maximum: 1000     # Maximum read capacity
@@ -59,6 +56,51 @@ If no `roleArn` is specified, plugin will automatically create one and use it.
 
 If you only want to enable Auto Scaling for the index, use `indexOnly: true` to skip Auto Scaling for the general DynamoDB table.
 
+## Examples
+
+```yaml
+custom:
+  autoscaling:
+  
+    # Autoscaling for table and index
+    - table: CustomTable  
+      index:              # List or single index name
+        - custom-index-name
+      read:
+        minimum: 5        
+        maximum: 1000     
+        targetUsage: 75   
+      write:
+        minimum: 40       
+        maximum: 200      
+        targetUsage: 50   
+        
+    # Using with custom role
+    - table: CustomTable  # DynamoDB Resource
+      roleArn:            # Arn of the role to be associated - Optional
+      read:
+        minimum: 5       
+        maximum: 1000     
+        targetUsage: 75   
+      write:
+        minimum: 40       
+        maximum: 200      
+        targetUsage: 50   
+        
+    # Autoscaling for index only
+    - table: IndexOnlyTable  
+      index:              
+        - custom-index-name
+      indexOnly: true     # autoscaling for index only
+      read:
+        minimum: 5        
+        maximum: 1000     
+        targetUsage: 75  
+      write:
+        minimum: 40       
+        maximum: 200      
+        targetUsage: 50   
+```
 
 ## DynamoDB
 
