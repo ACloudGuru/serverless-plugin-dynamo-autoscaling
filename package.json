@@ -1,6 +1,6 @@
 {
   "name": "serverless-plugin-dynamo-autoscaling",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Serverless Plugin to deploy DynamoDB Autoscaling",
   "main": "src/index.js",
   "repository": "git@github.com:ACloudGuru/serverless-plugin-dynamodb-autoscaling.git",
