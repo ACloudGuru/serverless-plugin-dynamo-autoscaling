@@ -28,7 +28,7 @@ const cloudformation = {
                   Ref: 'footable'
               }]]
           },
-          RoleARN: "'foorolearn'",
+          RoleARN: "foorolearn",
           ScalableDimension: 'dynamodb:table:ReadCapacityUnits',
           ServiceNamespace: 'dynamodb'
       },
@@ -63,7 +63,7 @@ const cloudformation = {
                   Ref: 'footable'
               }]]
           },
-          RoleARN: "'foorolearn'",
+          RoleARN: "foorolearn",
           ScalableDimension: 'dynamodb:table:WriteCapacityUnits',
           ServiceNamespace: 'dynamodb'
       },
@@ -109,7 +109,7 @@ const cloudformation = {
                   Ref: 'footable'
               }, '/index/', 'fooindex']]
           },
-          RoleARN: "'foorolearn'",
+          RoleARN: "foorolearn",
           ScalableDimension: 'dynamodb:index:ReadCapacityUnits',
           ServiceNamespace: 'dynamodb'
       },
@@ -155,7 +155,7 @@ const cloudformation = {
                   Ref: 'footable'
               }, '/index/', 'fooindex']]
           },
-          RoleARN: "'foorolearn'",
+          RoleARN: "foorolearn",
           ScalableDimension: 'dynamodb:index:WriteCapacityUnits',
           ServiceNamespace: 'dynamodb'
       },
