@@ -1,4 +1,7 @@
 # ⚡️ Serverless Plugin for DynamoDB Auto Scaling
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/1a7404b4669c4a2696bba05cfcc83dc6)](https://app.codacy.com/app/subash.adhikari/serverless-plugin-dynamo-autoscaling?utm_source=github.com&utm_medium=referral&utm_content=ACloudGuru/serverless-plugin-dynamo-autoscaling&utm_campaign=Badge_Grade_Dashboard)
+
 [![Build Status][travis-image]][travis-url]
 [![Coverage Status][coverage-image]][coverage-url]
 [![npm][npm-image]][npm-url]
