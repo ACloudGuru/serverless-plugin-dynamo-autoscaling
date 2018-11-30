@@ -6,6 +6,7 @@
 [![npm][npm-image]][npm-url]
 [![GitHub license][license-image]][license-url]
 [![dependencies Status][dependencies-image]][dependencies-url]
+[![LGTM Status][lgtm-image]][lgtm-url]
 
 Serverless Plugin to enable autoscaling for dynamodb tables and its GSI.
 
@@ -158,3 +159,5 @@ Feel free to use the code, it's released using the [MIT license](LICENSE.md).
 [coverage-url]:https://coveralls.io/github/ACloudGuru/serverless-plugin-dynamo-autoscaling?branch=master
 [codacy-image]:https://api.codacy.com/project/badge/Grade/1a7404b4669c4a2696bba05cfcc83dc6
 [codacy-url]:https://app.codacy.com/app/subash.adhikari/serverless-plugin-dynamo-autoscaling?utm_source=github.com&utm_medium=referral&utm_content=ACloudGuru/serverless-plugin-dynamo-autoscaling&utm_campaign=Badge_Grade_Dashboard
+[lgtm-image]:https://img.shields.io/lgtm/grade/javascript/g/ACloudGuru/serverless-plugin-dynamo-autoscaling.svg?logo=lgtm&logoWidth=18
+[lgtm-url]:https://lgtm.com/projects/g/ACloudGuru/serverless-plugin-dynamo-autoscaling/context:javascript
